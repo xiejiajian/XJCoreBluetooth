@@ -16,6 +16,7 @@
 		73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA2C731D40D057009B36A3 /* XJPeripheral.m */; };
 		73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48111D44ED7800CA0858 /* XJDeviceContext.m */; };
 		73EC48181D45018500CA0858 /* XJScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48171D45018500CA0858 /* XJScanController.m */; };
+		73EC481E1D450B0600CA0858 /* XJDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC481D1D450B0600CA0858 /* XJDemoController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		73EC48111D44ED7800CA0858 /* XJDeviceContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDeviceContext.m; sourceTree = "<group>"; };
 		73EC48161D45018500CA0858 /* XJScanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJScanController.h; sourceTree = "<group>"; };
 		73EC48171D45018500CA0858 /* XJScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJScanController.m; sourceTree = "<group>"; };
+		73EC481C1D450B0600CA0858 /* XJDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDemoController.h; sourceTree = "<group>"; };
+		73EC481D1D450B0600CA0858 /* XJDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDemoController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 		73EC480B1D44ED5800CA0858 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				73EC481C1D450B0600CA0858 /* XJDemoController.h */,
+				73EC481D1D450B0600CA0858 /* XJDemoController.m */,
 				73EC48161D45018500CA0858 /* XJScanController.h */,
 				73EC48171D45018500CA0858 /* XJScanController.m */,
 			);
@@ -196,6 +201,7 @@
 				73533CD11D407A310053FB7E /* main.m in Sources */,
 				73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */,
 				73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */,
+				73EC481E1D450B0600CA0858 /* XJDemoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
