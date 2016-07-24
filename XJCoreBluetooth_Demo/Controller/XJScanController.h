@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  XJScanController.h
 //  XJCoreBluetooth_Demo
 //
-//  Created by sl on 16/7/21.
+//  Created by sl on 16/7/24.
 //  Copyright © 2016年 xie. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface XJScanController : UITableViewController
 
 @end
-

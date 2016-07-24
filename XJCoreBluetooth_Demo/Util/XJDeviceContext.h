@@ -15,8 +15,6 @@ typedef NS_ENUM(NSInteger, XJCentralManagerState) {
     XJCentralManagerStatePoweredOn    = 0x05,
 };
 
-NSString *const ConnectionStateDidChange = @"ConnectionStateDidChange";
-
 @class XJPeripheral;
 
 @interface XJDeviceContext : NSObject

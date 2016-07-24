@@ -46,7 +46,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
     _connectionState = connectionState;
     
     //POST a notification when state is changed.
-    [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionStateDidChange object:@(connectionState) userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ConnectionStateDidChange" object:@(connectionState) userInfo:nil];
     NSLog(@"state has been change %d",connectionState);
 }
 

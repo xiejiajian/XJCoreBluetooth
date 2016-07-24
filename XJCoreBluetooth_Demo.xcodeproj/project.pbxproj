@@ -14,8 +14,8 @@
 		73533CDF1D407A310053FB7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73533CDD1D407A310053FB7E /* LaunchScreen.storyboard */; };
 		73DA2C741D40D057009B36A3 /* XJCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA2C711D40D057009B36A3 /* XJCentralManager.m */; };
 		73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA2C731D40D057009B36A3 /* XJPeripheral.m */; };
-		73EC480F1D44ED5800CA0858 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC480D1D44ED5800CA0858 /* ViewController.m */; };
 		73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48111D44ED7800CA0858 /* XJDeviceContext.m */; };
+		73EC48181D45018500CA0858 /* XJScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48171D45018500CA0858 /* XJScanController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +32,10 @@
 		73DA2C711D40D057009B36A3 /* XJCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCentralManager.m; sourceTree = "<group>"; };
 		73DA2C721D40D057009B36A3 /* XJPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPeripheral.h; sourceTree = "<group>"; };
 		73DA2C731D40D057009B36A3 /* XJPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPeripheral.m; sourceTree = "<group>"; };
-		73EC480C1D44ED5800CA0858 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		73EC480D1D44ED5800CA0858 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		73EC48101D44ED7800CA0858 /* XJDeviceContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDeviceContext.h; sourceTree = "<group>"; };
 		73EC48111D44ED7800CA0858 /* XJDeviceContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDeviceContext.m; sourceTree = "<group>"; };
+		73EC48161D45018500CA0858 /* XJScanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJScanController.h; sourceTree = "<group>"; };
+		73EC48171D45018500CA0858 /* XJScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJScanController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +105,8 @@
 		73EC480B1D44ED5800CA0858 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				73EC480C1D44ED5800CA0858 /* ViewController.h */,
-				73EC480D1D44ED5800CA0858 /* ViewController.m */,
+				73EC48161D45018500CA0858 /* XJScanController.h */,
+				73EC48171D45018500CA0858 /* XJScanController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,7 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73EC480F1D44ED5800CA0858 /* ViewController.m in Sources */,
+				73EC48181D45018500CA0858 /* XJScanController.m in Sources */,
 				73DA2C741D40D057009B36A3 /* XJCentralManager.m in Sources */,
 				73533CD41D407A310053FB7E /* AppDelegate.m in Sources */,
 				73533CD11D407A310053FB7E /* main.m in Sources */,

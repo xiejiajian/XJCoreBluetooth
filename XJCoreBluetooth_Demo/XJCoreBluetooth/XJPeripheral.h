@@ -46,11 +46,11 @@
 
 @property (nonatomic, assign) id<XJPeripheralDelegate> delegate;
 
+@property (nonatomic, copy) NSString *name;
+
 - (id)initWithDelegate:(id<XJPeripheralDelegate>)delegate;
 
 - (NSString *)version;
-
-- (NSString *)name;
 
 - (void)connect;
 

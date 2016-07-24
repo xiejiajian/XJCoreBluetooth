@@ -110,7 +110,7 @@
         <!--Device List-->
         <scene sceneID="xFg-SC-BFd">
             <objects>
-                <tableViewController title="Device List" id="Luk-Dt-1R2" sceneMemberID="viewController">
+                <tableViewController title="Device List" id="Luk-Dt-1R2" customClass="XJScanController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xEb-cc-LhM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,13 +132,20 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Device List" id="Jwk-g0-rVm">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="yyN-Pe-CIf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="yyN-Pe-CIf">
+                            <connections>
+                                <action selector="refresh:" destination="Luk-Dt-1R2" id="X2P-3h-a6Q"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="deviceList" destination="xEb-cc-LhM" id="E8A-g3-x6b"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjL-j5-Lpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="347"/>
+            <point key="canvasLocation" x="1669" y="167"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="X5Q-3I-cxR">
