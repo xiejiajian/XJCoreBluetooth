@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		73533CD11D407A310053FB7E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 73533CD01D407A310053FB7E /* main.m */; };
 		73533CD41D407A310053FB7E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 73533CD31D407A310053FB7E /* AppDelegate.m */; };
-		73533CD71D407A310053FB7E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73533CD61D407A310053FB7E /* ViewController.m */; };
 		73533CDA1D407A310053FB7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73533CD81D407A310053FB7E /* Main.storyboard */; };
 		73533CDC1D407A310053FB7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73533CDB1D407A310053FB7E /* Assets.xcassets */; };
 		73533CDF1D407A310053FB7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73533CDD1D407A310053FB7E /* LaunchScreen.storyboard */; };
 		73DA2C741D40D057009B36A3 /* XJCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA2C711D40D057009B36A3 /* XJCentralManager.m */; };
 		73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DA2C731D40D057009B36A3 /* XJPeripheral.m */; };
+		73EC480F1D44ED5800CA0858 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC480D1D44ED5800CA0858 /* ViewController.m */; };
+		73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48111D44ED7800CA0858 /* XJDeviceContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,8 +23,6 @@
 		73533CD01D407A310053FB7E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		73533CD21D407A310053FB7E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		73533CD31D407A310053FB7E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		73533CD51D407A310053FB7E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		73533CD61D407A310053FB7E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		73533CD91D407A310053FB7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73533CDB1D407A310053FB7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73533CDE1D407A310053FB7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +32,10 @@
 		73DA2C711D40D057009B36A3 /* XJCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJCentralManager.m; sourceTree = "<group>"; };
 		73DA2C721D40D057009B36A3 /* XJPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJPeripheral.h; sourceTree = "<group>"; };
 		73DA2C731D40D057009B36A3 /* XJPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJPeripheral.m; sourceTree = "<group>"; };
+		73EC480C1D44ED5800CA0858 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		73EC480D1D44ED5800CA0858 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		73EC48101D44ED7800CA0858 /* XJDeviceContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDeviceContext.h; sourceTree = "<group>"; };
+		73EC48111D44ED7800CA0858 /* XJDeviceContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDeviceContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +68,11 @@
 		73533CCE1D407A310053FB7E /* XJCoreBluetooth_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				73EC480B1D44ED5800CA0858 /* Controller */,
+				73EC480E1D44ED5800CA0858 /* Util */,
 				73DA2C621D40A43E009B36A3 /* XJCoreBluetooth */,
 				73533CD21D407A310053FB7E /* AppDelegate.h */,
 				73533CD31D407A310053FB7E /* AppDelegate.m */,
-				73533CD51D407A310053FB7E /* ViewController.h */,
-				73533CD61D407A310053FB7E /* ViewController.m */,
 				73533CD81D407A310053FB7E /* Main.storyboard */,
 				73533CDB1D407A310053FB7E /* Assets.xcassets */,
 				73533CDD1D407A310053FB7E /* LaunchScreen.storyboard */,
@@ -97,6 +100,24 @@
 				73DA2C671D40A43E009B36A3 /* SynthesizeSingleton.h */,
 			);
 			path = XJCoreBluetooth;
+			sourceTree = "<group>";
+		};
+		73EC480B1D44ED5800CA0858 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73EC480C1D44ED5800CA0858 /* ViewController.h */,
+				73EC480D1D44ED5800CA0858 /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73EC480E1D44ED5800CA0858 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				73EC48101D44ED7800CA0858 /* XJDeviceContext.h */,
+				73EC48111D44ED7800CA0858 /* XJDeviceContext.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,11 +190,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73EC480F1D44ED5800CA0858 /* ViewController.m in Sources */,
 				73DA2C741D40D057009B36A3 /* XJCentralManager.m in Sources */,
-				73533CD71D407A310053FB7E /* ViewController.m in Sources */,
 				73533CD41D407A310053FB7E /* AppDelegate.m in Sources */,
 				73533CD11D407A310053FB7E /* main.m in Sources */,
 				73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */,
+				73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
