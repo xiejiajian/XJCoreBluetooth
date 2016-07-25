@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) XJCentralManager *mgr;
 
-@property (nonatomic, copy) void(^connectSuccessBlock)(XJPeripheral *slPeripheral);
+@property (nonatomic, copy) void(^connectSuccessBlock)(XJPeripheral *xjPeripheral);
 
 @property (nonatomic, copy) void(^connectFailureBlock)(NSError *error);
 
@@ -62,7 +62,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
     [_mgr stopScan];
 }
 
-- (void)connectSuccess:(void(^)(XJPeripheral *slPeripheral))success failure:(void(^)(NSError *error))failure {
+- (void)connectSuccess:(void(^)(XJPeripheral *xjPeripheral))success failure:(void(^)(NSError *error))failure {
     _peripheral.delegate = self;
     [_peripheral connect];
     _connectSuccessBlock = success;
@@ -83,9 +83,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
 /**
  *  Error:disconnect manually,set notify unsucessfully,system timeout.
  */
-- (void)didConnected:(NSError *)error slPeripheral:(XJPeripheral *)slPeripheral {
-    NSLog(@"Device Context didConnect %@ error %@",slPeripheral,error);
-    _peripheral = slPeripheral;
+- (void)didConnected:(NSError *)error xjPeripheral:(XJPeripheral *)xjPeripheral {
+    NSLog(@"Device Context didConnect %@ error %@",xjPeripheral,error);
+    _peripheral = xjPeripheral;
     
     if (error) {
         self.connectionState = NO;
@@ -95,7 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
     } else {
         self.connectionState = YES;
         if (_connectSuccessBlock) {
-            _connectSuccessBlock(slPeripheral);
+            _connectSuccessBlock(xjPeripheral);
         }
     }
     
@@ -127,7 +127,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
 
 #pragma mark XJCentralManagerAutoConnectDelegate
 
-- (void)centralManager:(CBCentralManager *)central didAutoConnectSLPeripheral:(XJPeripheral *)peripheral {
+- (void)centralManager:(CBCentralManager *)central didAutoConnectXJPeripheral:(XJPeripheral *)peripheral {
     _peripheral = peripheral;
     _peripheral.delegate = self;
 }

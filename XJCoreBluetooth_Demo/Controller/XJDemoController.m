@@ -7,31 +7,47 @@
 //
 
 #import "XJDemoController.h"
+#import "XJDeviceContext.h"
+#import "XJPeripheral.h"
+#import "NSData+BLEHexString.h"
+#import "NSString+BLEHexString.h"
 
 @interface XJDemoController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *connectedDevice;
+@property (weak, nonatomic) IBOutlet UITextField *sendDataField;
+@property (weak, nonatomic) IBOutlet UITextView *dataReceivedView;
+
 @end
 
-@implementation XJDemoController
+@implementation XJDemoController {
+    XJDeviceContext *context;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   context = [XJDeviceContext sharedInstance];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)disconnect:(id)sender {
+    [context disConnect];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)sendData:(id)sender {
+    
+    if (_sendDataField.text.length % 2 != 0) {
+        NSLog(@"Please input the correct hexadecimal data");
+        return;
+    }
+    
+    [XJDeviceContext utilTaskWithData:[NSData dataFromHexString:_sendDataField.text] success:^(NSData *response) {
+        _dataReceivedView.text = [NSString hexStringFromData:response];
+    } failure:nil];
 }
-*/
+
+- (IBAction)unwindToDemo:(UIStoryboardSegue *)segue {
+    [_connectedDevice setTitle:[NSString stringWithFormat:@"Name\n%@",context.peripheral.name] forState:UIControlStateNormal];
+}
 
 @end

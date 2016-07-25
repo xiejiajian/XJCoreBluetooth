@@ -17,6 +17,8 @@
 		73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48111D44ED7800CA0858 /* XJDeviceContext.m */; };
 		73EC48181D45018500CA0858 /* XJScanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48171D45018500CA0858 /* XJScanController.m */; };
 		73EC481E1D450B0600CA0858 /* XJDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC481D1D450B0600CA0858 /* XJDemoController.m */; };
+		73EC48241D45C17D00CA0858 /* NSData+BLEHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48211D45C17D00CA0858 /* NSData+BLEHexString.m */; };
+		73EC48251D45C17D00CA0858 /* NSString+BLEHexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 73EC48231D45C17D00CA0858 /* NSString+BLEHexString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,10 @@
 		73EC48171D45018500CA0858 /* XJScanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJScanController.m; sourceTree = "<group>"; };
 		73EC481C1D450B0600CA0858 /* XJDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJDemoController.h; sourceTree = "<group>"; };
 		73EC481D1D450B0600CA0858 /* XJDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJDemoController.m; sourceTree = "<group>"; };
+		73EC48201D45C17D00CA0858 /* NSData+BLEHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+BLEHexString.h"; sourceTree = "<group>"; };
+		73EC48211D45C17D00CA0858 /* NSData+BLEHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+BLEHexString.m"; sourceTree = "<group>"; };
+		73EC48221D45C17D00CA0858 /* NSString+BLEHexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BLEHexString.h"; sourceTree = "<group>"; };
+		73EC48231D45C17D00CA0858 /* NSString+BLEHexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BLEHexString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 		73533CCE1D407A310053FB7E /* XJCoreBluetooth_Demo */ = {
 			isa = PBXGroup;
 			children = (
+				73EC481F1D45C17D00CA0858 /* Category */,
 				73EC480B1D44ED5800CA0858 /* Controller */,
 				73EC480E1D44ED5800CA0858 /* Util */,
 				73DA2C621D40A43E009B36A3 /* XJCoreBluetooth */,
@@ -123,6 +130,17 @@
 				73EC48111D44ED7800CA0858 /* XJDeviceContext.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		73EC481F1D45C17D00CA0858 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				73EC48201D45C17D00CA0858 /* NSData+BLEHexString.h */,
+				73EC48211D45C17D00CA0858 /* NSData+BLEHexString.m */,
+				73EC48221D45C17D00CA0858 /* NSString+BLEHexString.h */,
+				73EC48231D45C17D00CA0858 /* NSString+BLEHexString.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +217,9 @@
 				73DA2C741D40D057009B36A3 /* XJCentralManager.m in Sources */,
 				73533CD41D407A310053FB7E /* AppDelegate.m in Sources */,
 				73533CD11D407A310053FB7E /* main.m in Sources */,
+				73EC48251D45C17D00CA0858 /* NSString+BLEHexString.m in Sources */,
 				73DA2C751D40D057009B36A3 /* XJPeripheral.m in Sources */,
+				73EC48241D45C17D00CA0858 /* NSData+BLEHexString.m in Sources */,
 				73EC48121D44ED7800CA0858 /* XJDeviceContext.m in Sources */,
 				73EC481E1D450B0600CA0858 /* XJDemoController.m in Sources */,
 			);

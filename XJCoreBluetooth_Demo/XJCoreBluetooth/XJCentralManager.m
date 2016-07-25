@@ -73,7 +73,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJCentralManager);
     @synchronized (self) {
         
         if (!(_centralManager.state == CBCentralManagerStatePoweredOn || _centralManager.state == CBCentralManagerStateUnknown)) {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"中心设备蓝牙关闭csan", NSLocalizedDescriptionKey, nil];
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"bluetooth power off", NSLocalizedDescriptionKey, nil];
             NSError *error = [NSError errorWithDomain:COM_XJ_PERIPHERAL code:XJ_ERROR_CENTRAL_POWEROFF userInfo:userInfo];
             [xjPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
             
@@ -81,35 +81,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJCentralManager);
         }
         
         if (_isScanning) {
-            NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"正在连接其他外围设备", NSLocalizedDescriptionKey, nil];
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"scanning...", NSLocalizedDescriptionKey, nil];
             NSError *error = [NSError errorWithDomain:COM_XJ_PERIPHERAL code:XJ_ERROR_CENTRAL_SCANNING userInfo:userInfo];
             [xjPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
             return nResult;
         }
         
-        
         [self scanThread];
         
-        //        if (![self scan]) {
-        //            NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"中心设备正在连接其他外围设备", NSLocalizedDescriptionKey, nil];
-        //            NSError *error = [NSError errorWithDomain:COM_SLZF_PERIPHERAL code:SLZF_ERROR_CENTRAL_SCANNING userInfo:userInfo];
-        //            [slPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
-        //            return nResult;
-        //        }
-        
-        //        _targetPeripheral = slPeripheral;
         nResult = BLE_OK;
     }
-    
-    
-    //    nResult = [self setScanState:YES];
-    //    if (nResult != 0) {
-    //        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"中心设备正在连接其他外围设备", NSLocalizedDescriptionKey, nil];
-    //        NSError *error = [NSError errorWithDomain:COM_SLZF_PERIPHERAL code:SLZF_ERROR_CENTRAL_SCANNING userInfo:userInfo];
-    //        [slPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
-    //        return nResult;
-    //    }
-    
     
 _err:
     return nResult;
@@ -151,16 +132,16 @@ _err:
         
         _isScanning = YES;
         NSLog(@"centralManager start scan");
-        [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:XJ_SERVICE_UUID_TRANSACTION],[CBUUID UUIDWithString:XJ_DFU_SERVICE_UUID_TRANSACTION]]
+        
+        //If your device has a different service UUID,add it to the array.
+        //If the array is nil,all bluetooth devices nearby wil be found.
+        [_centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:XJ_SERVICE_UUID_TRANSACTION]]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO}];
         
     }
 }
 
 - (void)rescan {
-    //    if (self.mgr.delegate == nil) {
-    //        self.mgr.delegate = self;
-    //    }
     [self stopScan];
     [[self mutableArrayValueForKey:@"peripherals"] removeAllObjects];
     [self scanForPeripheral:nil];
@@ -172,40 +153,6 @@ _err:
     _isScanning = NO;
     [_centralManager stopScan];
 }
-
-
-//- (BOOL)scan
-//{
-//    BOOL nResult = NO;
-//
-//    @synchronized (self) {
-//        if (_isScanning != YES) {
-//            [self performSelector:@selector(scanThread) withObject:nil afterDelay:0.2];
-//            nResult = YES;
-//        }
-//    }
-//    return nResult;
-//}
-//
-//- (BOOL)stopScan
-//{
-//    BOOL nResult = NO;
-//    @synchronized (self) {
-//        if (_isScanning != NO) {
-//            _isScanning = NO;
-//            [_centralManager stopScan];
-//            nResult = YES;
-//        } else {
-//
-//        }
-//    }
-//    return nResult;
-//}
-
-
-
-
-
 
 
 #pragma mark - CBCentralManagerDelegate Methods
@@ -240,7 +187,7 @@ _err:
         case CBCentralManagerStatePoweredOff:
             NSLog(@">>>CBCentralManagerStatePoweredOff");
             
-            userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"中心设备蓝牙关闭state", NSLocalizedDescriptionKey, nil];
+            userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"CBCentralManagerStatePoweredOff", NSLocalizedDescriptionKey, nil];
             error = [NSError errorWithDomain:COM_XJ_PERIPHERAL code:XJ_ERROR_CENTRAL_POWEROFF userInfo:userInfo];
             if (_targetPeripheral) {
                 [_targetPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
@@ -310,7 +257,6 @@ _err:
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    //判断
     
     if (_disconnectedPeripheralsDict[peripheral.identifier]) {
         _targetPeripheral = _disconnectedPeripheralsDict[peripheral.identifier];
@@ -320,7 +266,8 @@ _err:
     [_targetPeripheral centralManager:central didConnectPeripheral:peripheral];
     [_autoConnectDelegate centralManager:central didAutoConnectXJPeripheral:_targetPeripheral];
     
-    //更新两个字典
+    
+    //update 2 dictionaries
     [_connectedPeripheralsDict setObject:_targetPeripheral forKey:peripheral.identifier];
     [_discoverPeripheralsDict removeObjectForKey:peripheral.identifier];
     
