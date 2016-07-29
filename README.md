@@ -8,4 +8,4 @@ run the project "XJCoreBluetooth_Demo.xcodeproj" directly.
 * Drag the folder "XJCoreBluetooth" to your project.
 * Import the header `#import "XJPeripheral.h"`,`#import "XJCentralManager.h"`
 * Initialize XJCentralManager `[XJCentralManager sharedInstance]`
-* It would be better to create a singleton context like 'XJDeviceContext' *XJDeviceContext is For reference*
+* It would be better to create a singleton context like 'XJDeviceContext' *(XJDeviceContext is For reference)*

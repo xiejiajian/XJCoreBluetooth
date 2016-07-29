@@ -36,7 +36,7 @@
         int int_ch2;
         if(hex_char2 >= '0' && hex_char2 <='9')
             int_ch2 = (hex_char2-48); //// 0 的Ascll - 48
-        else if(hex_char1 >= 'A' && hex_char1 <='F')
+        else if(hex_char2 >= 'A' && hex_char2 <='F')
             int_ch2 = hex_char2-55; //// A 的Ascll - 65
         else
             int_ch2 = hex_char2-87; //// a 的Ascll - 97
