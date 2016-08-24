@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   context = [XJDeviceContext sharedInstance];
+   context = [XJDeviceContext context];
 }
 
 - (IBAction)disconnect:(id)sender {
@@ -49,5 +49,27 @@
 - (IBAction)unwindToDemo:(UIStoryboardSegue *)segue {
     [_connectedDevice setTitle:[NSString stringWithFormat:@"Name\n%@",context.peripheral.name] forState:UIControlStateNormal];
 }
+
+- (IBAction)cocurrent:(id)sender {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                
+        Byte getsn[] = {0xC3,0xC1,0x00};
+        NSData *aSetting = [[NSData alloc] initWithBytes:getsn length:sizeof(getsn)];
+        [XJDeviceContext utilTaskWithData:aSetting success:^(NSData *response) {
+            NSLog(@"c3c100 %@",response);
+            
+        } failure:nil];
+        
+        Byte getdate[] = {0x00,0xC0,0x00};
+        NSData *bSetting = [[NSData alloc] initWithBytes:getdate length:sizeof(getdate)];
+        [XJDeviceContext utilTaskWithData:bSetting success:^(NSData *response) {
+            NSLog(@"00c000 %@",response);
+        } failure:nil];
+        
+    });
+
+}
+
 
 @end

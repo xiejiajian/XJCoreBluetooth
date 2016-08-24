@@ -271,7 +271,7 @@ _err:
     [_connectedPeripheralsDict setObject:_targetPeripheral forKey:peripheral.identifier];
     [_discoverPeripheralsDict removeObjectForKey:peripheral.identifier];
     
-    _targetPeripheral = nil;
+//    _targetPeripheral = nil;
     
     [self stopScan];
     [self stopWaitingScanUlanKey];

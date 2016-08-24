@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, XJCentralManagerState) {
 
 @interface XJDeviceContext : NSObject
 
-SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
+//SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
 
 /**
  *  The peripheral
@@ -41,6 +41,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
  */
 @property (nonatomic, assign) BOOL connectionState;
 
++ (instancetype)context;
+
 /**
  *  Clean the 'peripherals' array and scan again.
  */
@@ -58,6 +60,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
  *  @param failure If failed to connect,returns an NSError.
  */
 - (void)connectSuccess:(void(^)(XJPeripheral *xjPeripheral))success failure:(void(^)(NSError *error))failure;
+- (void)sendData:(NSData *)data success:(void(^)(id response))success;
 
 /**
  *  cancel the connectinon.

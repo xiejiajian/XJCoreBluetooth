@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GKy-UO-wD4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GKy-UO-wD4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -85,12 +85,28 @@
                                     </mask>
                                 </variation>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKy-8v-FK0">
+                                <rect key="frame" x="215" y="188" width="179" height="70"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="uM3-rg-P8W"/>
+                                    <constraint firstAttribute="height" constant="70" id="x8y-Wp-Swl"/>
+                                </constraints>
+                                <color key="tintColor" red="0.32549019610000002" green="0.57254901960000004" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="并发测试"/>
+                                <connections>
+                                    <action selector="cocurrent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e2m-DQ-eAL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.32549019610000002" green="0.57254901960000004" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="eJz-d5-i9e" firstAttribute="width" secondItem="2TJ-kg-wkr" secondAttribute="width" id="1mv-IL-Xm2"/>
+                            <constraint firstItem="lKy-8v-FK0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4mw-A2-DaE"/>
                             <constraint firstItem="1y0-sX-ynD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="5Rw-bF-Q4O"/>
+                            <constraint firstItem="lKy-8v-FK0" firstAttribute="top" secondItem="1y0-sX-ynD" secondAttribute="bottom" constant="8" id="5iX-tV-req"/>
                             <constraint firstItem="F6M-KL-4qn" firstAttribute="leading" secondItem="2TJ-kg-wkr" secondAttribute="trailing" constant="16" id="9Hy-bf-xSY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NQS-dC-any" secondAttribute="bottom" constant="8" id="9VI-ya-rx9"/>
                             <constraint firstItem="eJz-d5-i9e" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ERM-af-Wcm"/>
@@ -103,6 +119,7 @@
                             <constraint firstItem="F6M-KL-4qn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="UWS-rS-sET"/>
                             <constraint firstItem="NQS-dC-any" firstAttribute="top" secondItem="Sgc-VA-l13" secondAttribute="bottom" constant="8" id="Y1V-4g-mTE"/>
                             <constraint firstItem="Sgc-VA-l13" firstAttribute="top" secondItem="eJz-d5-i9e" secondAttribute="bottom" constant="8" id="bPa-yh-udl"/>
+                            <constraint firstItem="lKy-8v-FK0" firstAttribute="leading" secondItem="eJz-d5-i9e" secondAttribute="trailing" constant="16" id="dgb-mt-2Be"/>
                             <constraint firstItem="1y0-sX-ynD" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="e4s-Mt-anv"/>
                             <constraint firstItem="F6M-KL-4qn" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lqh-33-YEI"/>
                             <constraint firstItem="NQS-dC-any" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="mIX-3N-R5p"/>
