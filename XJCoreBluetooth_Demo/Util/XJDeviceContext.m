@@ -20,7 +20,7 @@ static NSString *const BleErrorDomain = @"BleErrorDomain";
 
 @property (nonatomic, copy) void(^connectFailureBlock)(NSError *error);
 
-@property (nonatomic, copy) void(^dataReceiveBlock)(id response);
+//@property (nonatomic, copy) void(^dataReceiveBlock)(id response);
 
 @property (readwrite, nonatomic, strong) NSCondition *lock;
 
@@ -39,6 +39,13 @@ static NSString *const BleErrorDomain = @"BleErrorDomain";
 @synthesize connectionState = _connectionState;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
+
+- (dispatch_queue_t)serialQueue {
+    if (_serialQueue == nil) {
+        _serialQueue = dispatch_queue_create("com.datareceive.serialqueue", DISPATCH_QUEUE_SERIAL);
+    }
+    return _serialQueue;
+}
 
 - (instancetype)init {
     self = [super init];
