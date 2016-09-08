@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _context = [XJDeviceContext context];
+    _context = [XJDeviceContext sharedInstance];
     
     [_context addObserver:self forKeyPath:@"mgr.peripherals" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     

@@ -15,11 +15,16 @@ typedef NS_ENUM(NSInteger, XJCentralManagerState) {
     XJCentralManagerStatePoweredOn    = 0x05,
 };
 
+typedef NS_ENUM(NSInteger, XJCommandQueueType) {
+    XJCommandQueueTypeSerial,
+    XJCommandQueueTypeConcurrent,
+};
+
 @class XJPeripheral;
 
 @interface XJDeviceContext : NSObject
 
-//SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
+SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(XJDeviceContext);
 
 /**
  *  The peripheral
@@ -41,7 +46,7 @@ typedef NS_ENUM(NSInteger, XJCentralManagerState) {
  */
 @property (nonatomic, assign) BOOL connectionState;
 
-+ (instancetype)context;
+//+ (instancetype)context;
 
 /**
  *  Clean the 'peripherals' array and scan again.

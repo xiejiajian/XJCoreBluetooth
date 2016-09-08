@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   context = [XJDeviceContext context];
+   context = [XJDeviceContext sharedInstance];
 }
 
 - (IBAction)disconnect:(id)sender {
