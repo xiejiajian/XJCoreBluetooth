@@ -283,17 +283,6 @@
     return hexText;
 }
 
-
-
-//- (void)cfcaSend:(NSData *)data {
-//    NSArray *dataArr = [BluetoothTransitionData setCFCACommand:data];
-//    [dataArr enumerateObjectsUsingBlock:^(NSData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [self sendToPeripheral:obj];
-//    }];
-//
-//}
-
-
 - (void)sendToPeripheral:(NSData *)data {
     if (data == nil || data.length == 0) { return; }
     if (_peripheral == nil) { return; }

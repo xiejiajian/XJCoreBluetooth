@@ -60,18 +60,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
     return self;
 }
 
-//+ (instancetype)context {
-//    return [[self alloc] init];
-//}
-
-//- (XJPeripheral *)peripheral {
-//    if (_peripheral == nil) {
-//        _peripheral = [_mgr valueForKey:@"targetPeripheral"];
-//    }
-//    _peripheral.delegate = self;
-//    return _peripheral;
-//}
-
 - (NSMutableArray<XJPeripheral *> *)peripherals {
     return _mgr.peripherals;
 }
@@ -160,7 +148,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
 }
 
 
-#pragma mark XJPeripheralDelegate
+#pragma mark - XJPeripheralDelegate
 /**
  *  Error:disconnect manually,set notify unsucessfully,system timeout.
  */
@@ -222,9 +210,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJDeviceContext);
     
 }
 
-
-
-#pragma mark XJCentralManagerAutoConnectDelegate
+#pragma mark - XJCentralManagerAutoConnectDelegate
 
 - (void)centralManager:(CBCentralManager *)central didAutoConnectXJPeripheral:(XJPeripheral *)peripheral {
     self.peripheral = peripheral;

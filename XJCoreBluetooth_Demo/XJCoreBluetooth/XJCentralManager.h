@@ -13,6 +13,8 @@
 
 @class XJPeripheral,CBCentralManager,CBPeripheral;
 
+#pragma mark - CentralManagerDelegate
+
 @protocol XJCentralManagerDelegate<NSObject>
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
@@ -29,6 +31,8 @@
 
 @end
 
+#pragma mark - Auto Connect
+
 @protocol XJCentralManagerAutoConnectDelegate<NSObject>
 
 - (void)centralManager:(CBCentralManager *)central didUpdateState:(NSInteger)state;
@@ -36,6 +40,8 @@
 - (void)centralManager:(CBCentralManager *)central didAutoConnectXJPeripheral:(XJPeripheral *)peripheral;
 
 @end
+
+#pragma mark - Central Manager definition
 
 @interface XJCentralManager : NSObject
 
