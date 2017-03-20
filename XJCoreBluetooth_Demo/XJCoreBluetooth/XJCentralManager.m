@@ -14,10 +14,8 @@
 #define SCAN_XJ_KEY_TIMEOUT  (20.0)
 #define CONNECT_XJ_KEY_TIMEOUT  (20.0)
 
-@interface XJCentralManager () <CBCentralManagerDelegate,CBPeripheralDelegate>
-{
+@interface XJCentralManager () <CBCentralManagerDelegate,CBPeripheralDelegate> {
     dispatch_queue_t _bluetoothListenningSerialQueue;
-    
 }
 
 
@@ -31,19 +29,19 @@
 /**
  *  连接中的设备
  */
-@property (   atomic, strong) NSMutableDictionary *connectedPeripheralsDict;
+@property (nonatomic, strong) NSMutableDictionary *connectedPeripheralsDict;
 
 /**
  *  断开连接的设备
  */
-@property (   atomic, strong) NSMutableDictionary *disconnectedPeripheralsDict;
+@property (nonatomic, strong) NSMutableDictionary *disconnectedPeripheralsDict;
 
 /**
  *  发现的设备
  */
-@property (   atomic, strong) NSMutableDictionary *discoverPeripheralsDict;
+@property (nonatomic, strong) NSMutableDictionary *discoverPeripheralsDict;
 
-@property (   atomic, assign) BOOL  isScanning;
+@property (nonatomic, assign) BOOL  isScanning;
 
 @end
 
@@ -92,31 +90,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(XJCentralManager);
         nResult = BLE_OK;
     }
     
-_err:
     return nResult;
 }
 
 
 
-- (void)scanThread
-{
+- (void)scanThread {
     [self performSelector:@selector(scan) withObject:nil afterDelay:0.2];
     [self stopWaitingScanUlanKey];
     [self waitingForScanUlanKey];
 }
 
-- (void)stopWaitingScanUlanKey
-{
+- (void)stopWaitingScanUlanKey {
     [XJCentralManager cancelPreviousPerformRequestsWithTarget:self selector:@selector(scanPeripheralTimeout) object:nil];
 }
 
--(void)waitingForScanUlanKey
-{
+-(void)waitingForScanUlanKey {
     [self performSelector:@selector(scanPeripheralTimeout) withObject:nil afterDelay:SCAN_XJ_KEY_TIMEOUT];
 }
 
-- (void)scanPeripheralTimeout
-{
+- (void)scanPeripheralTimeout {
     NSLog(@"centralManager scan timeout");
     [self stopScan];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"The specified device could be connected timed out.", NSLocalizedDescriptionKey, nil];
@@ -125,8 +118,7 @@ _err:
 }
 
 
-- (void)scan
-{
+- (void)scan {
     
     if (_centralManager.state == CBCentralManagerStatePoweredOn) {
         
@@ -147,8 +139,7 @@ _err:
     [self scanForPeripheral:nil];
 }
 
-- (void)stopScan
-{
+- (void)stopScan {
     NSLog(@"centralManager stop scan");
     _isScanning = NO;
     [_centralManager stopScan];
@@ -156,8 +147,7 @@ _err:
 
 
 #pragma mark - CBCentralManagerDelegate Methods
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central
-{
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     [_autoConnectDelegate centralManager:central didUpdateState:central.state];
     
     //    UlanError *error = nil;
@@ -235,13 +225,11 @@ _err:
 }
 
 
-- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict
-{
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *, id> *)dict {
     
 }
 
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI
-{
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI {
     int nResult = BLE_ERROR;
     
     XJPeripheral *xjPeripheral = [[XJPeripheral alloc] initWithDelegate:nil];
@@ -255,8 +243,7 @@ _err:
     
 }
 
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
-{
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     if (_disconnectedPeripheralsDict[peripheral.identifier]) {
         _targetPeripheral = _disconnectedPeripheralsDict[peripheral.identifier];
@@ -278,14 +265,12 @@ _err:
     
 }
 
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     [_targetPeripheral centralManager:nil didFailToConnectPeripheral:nil error:error];
     _targetPeripheral = nil;
 }
 
-- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     XJPeripheral *xjPeripheral = _connectedPeripheralsDict[peripheral.identifier];
     if (xjPeripheral) {
         [xjPeripheral centralManager:central didDisconnectPeripheral:peripheral error:error];

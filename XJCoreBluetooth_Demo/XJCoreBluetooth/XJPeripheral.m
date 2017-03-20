@@ -45,21 +45,18 @@
 
 @implementation XJPeripheral
 
-- (NSString *)version
-{
+- (NSString *)version {
     return XJ_PERIPHERAL_VERSION;
 }
 
-- (id)initWithDelegate:(id<XJPeripheralDelegate>)delegate
-{
+- (id)initWithDelegate:(id<XJPeripheralDelegate>)delegate {
     if (self = [super init]) {
         _delegate = delegate;
     }
     return self;
 }
 
-- (void)connect
-{
+- (void)connect {
     if (!_delegate) { return; }
     
     if ([self isConnected]) {
@@ -77,15 +74,13 @@
     }
 }
 
-- (void)connectThread
-{
+- (void)connectThread {
     [_centralManager connectPeripheral:_peripheral options:nil];
     [self stopWaitingConnectUlanKey];
     [self waitingForConnectUlanKey];
 }
 
-- (void)stopWaitingConnectUlanKey
-{
+- (void)stopWaitingConnectUlanKey {
     [XJCentralManager cancelPreviousPerformRequestsWithTarget:self selector:@selector(connectPeripheralTimeout) object:nil];
 }
 
@@ -94,8 +89,7 @@
     [self performSelector:@selector(connectPeripheralTimeout) withObject:nil afterDelay:CONNECT_XJ_KEY_TIMEOUT];
 }
 
-- (void)connectPeripheralTimeout
-{
+- (void)connectPeripheralTimeout {
     if (![self isConnected]) {
         NSLog(@"centralManager connect timeout");
         NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"The specified device could be connected timed out over 10s.", NSLocalizedDescriptionKey, nil];
@@ -108,8 +102,7 @@
     return _peripheral.name;
 }
 
-- (BOOL)isConnected
-{
+- (BOOL)isConnected {
     BOOL isConnected = NO;
     if (_peripheral) {
         if ([_peripheral respondsToSelector:@selector(state)]) {
@@ -122,8 +115,7 @@
 }
 
 //主动断开
-- (void)disConnect
-{
+- (void)disConnect {
     _error = nil;
     if (_centralManager && _peripheral) {
         [_centralManager cancelPeripheralConnection:_peripheral];
@@ -139,8 +131,7 @@
 }
 
 //找到设备，但set Notify失败
-- (void)disConnect:(NSError *)error
-{
+- (void)disConnect:(NSError *)error {
     _error = error;
     if (_centralManager && _peripheral) {
         [_centralManager cancelPeripheralConnection:_peripheral];
@@ -156,8 +147,7 @@
 }
 
 
-- (void)clean
-{
+- (void)clean {
     if (_centralManager && _peripheral) {
         [_centralManager cancelPeripheralConnection:_peripheral];
     }
@@ -177,8 +167,7 @@
 
 
 
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Discover target peripheral(%@), description: %@", peripheral.name, peripheral.description);
     //    [central connectPeripheral:peripheral options:nil];
     _centralManager = central;
@@ -196,8 +185,7 @@
     _state = BLE_discovered;
 }
 
-- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
-{
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     //    _peripheral = peripheral;
     //    _peripheral.delegate = self;
@@ -209,16 +197,14 @@
     _state = BLE_discoverServices;
 }
 
-- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Connect peripheral(%@) fail, BleError: %@", peripheral.name, error.localizedDescription);
     
     [_delegate didConnected:error xjPeripheral:self];
     [self clean];
 }
 
-- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     if (error) {
         NSLog(@"目标外围设备(%@)断开连接, 描述:%@", _peripheral.name, error.localizedDescription);
@@ -281,8 +267,7 @@
 
 
 
-- (NSString *)bin2hex:(NSData *)data
-{
+- (NSString *)bin2hex:(NSData *)data {
     u_char *pData = NULL; int nDataLength = 0;
     NSMutableString *hexText = nil;
     
@@ -309,8 +294,7 @@
 //}
 
 
-- (void)sendToPeripheral:(NSData *)data
-{
+- (void)sendToPeripheral:(NSData *)data {
     if (data == nil || data.length == 0) { return; }
     if (_peripheral == nil) { return; }
     
@@ -353,8 +337,7 @@
  *
  *  @discussion			This method is invoked when the @link name @/link of <i>peripheral</i> changes.
  */
-- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral
-{
+- (void)peripheralDidUpdateName:(CBPeripheral *)peripheral {
     
 }
 
@@ -368,8 +351,7 @@
  *						At this point, the designated <code>CBService</code> objects have been invalidated.
  *						Services can be re-discovered via @link discoverServices: @/link.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray<CBService *> *)invalidatedServices
-{
+- (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray<CBService *> *)invalidatedServices {
     
 }
 
@@ -383,8 +365,7 @@
  *
  *  @deprecated			Use {@link peripheral:didReadRSSI:error:} instead.
  */
-- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error
-{
+- (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
     
 }
 
@@ -397,8 +378,7 @@
  *
  *  @discussion			This method returns the result of a @link readRSSI: @/link call.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error {
     
 }
 
@@ -412,8 +392,7 @@
  *						<i>peripheral</i>'s @link services @/link property.
  *
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
     if (error) {
         NSLog(@"peripheral(%@) discover service fail, BleError: %@", peripheral.name, error.localizedDescription);
         [peripheral discoverServices:@[[CBUUID UUIDWithString:XJ_WRITER_CHARACT_UUID_TRANSACTION],[CBUUID UUIDWithString:XJ_READER_CHARACT_UUID_TRANSACTION]]];
@@ -442,8 +421,7 @@
  *  @discussion			This method returns the result of a @link discoverIncludedServices:forService: @/link call. If the included service(s) were read successfully,
  *						they can be retrieved via <i>service</i>'s <code>includedServices</code> property.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(nullable NSError *)error {
     
 }
 
@@ -457,8 +435,7 @@
  *  @discussion			This method returns the result of a @link discoverCharacteristics:forService: @/link call. If the characteristic(s) were read successfully,
  *						they can be retrieved via <i>service</i>'s <code>characteristics</code> property.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error {
     if (error) {
         NSLog(@"service(%@) discover Characteristics fail, BleError: %@", service.UUID, error.localizedDescription);
         [peripheral discoverCharacteristics:nil forService:service];
@@ -495,8 +472,7 @@
  *
  *  @discussion				This method returns the result of a @link setNotifyValue:forCharacteristic: @/link call.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     if (error) {
         NSLog(@"service(%@) tunnel(%@) notify register fail, BleError: %@", _service.UUID, characteristic.UUID, error.localizedDescription);
         [self disConnect:error];
@@ -528,8 +504,7 @@
  *
  *  @discussion				This method is invoked after a @link readValueForCharacteristic: @/link call, or upon receipt of a notification/indication.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     if (error) {
         NSLog(@"tunnel(%@) received data fail, BleError: %@", characteristic.UUID, error.localizedDescription);
         [self disConnect:error];
@@ -552,8 +527,7 @@
  *
  *  @discussion				This method returns the result of a {@link writeValue:forCharacteristic:type:} call, when the <code>CBCharacteristicWriteWithResponse</code> type is used.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     
 }
 
@@ -568,8 +542,7 @@
  *  @discussion				This method returns the result of a @link discoverDescriptorsForCharacteristic: @/link call. If the descriptors were read successfully,
  *							they can be retrieved via <i>characteristic</i>'s <code>descriptors</code> property.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
     
 }
 
@@ -582,8 +555,7 @@
  *
  *  @discussion				This method returns the result of a @link readValueForDescriptor: @/link call.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
     
 }
 
@@ -596,8 +568,7 @@
  *
  *  @discussion				This method returns the result of a @link writeValue:forDescriptor: @/link call.
  */
-- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error
-{
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
     
 }
 
